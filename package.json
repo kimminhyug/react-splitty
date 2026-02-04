@@ -1,0 +1,44 @@
+{
+  "name": "react-splitty",
+  "version": "1.0.0",
+  "description": "N개의 뷰어 모달을 관리하는 React 라이브러리 - 리사이즈, 충돌감지, 스크롤동기화, 최소화 지원",
+  "type": "module",
+  "main": "./dist/split-viewer.umd.cjs",
+  "module": "./dist/split-viewer.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/split-viewer.js",
+      "require": "./dist/split-viewer.umd.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:demo": "vite build --config vite.config.demo.ts",
+    "preview": "vite preview",
+    "preview:demo": "vite preview --outDir dist-demo"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.7.0"
+  }
+}
