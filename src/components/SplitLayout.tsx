@@ -94,15 +94,15 @@ export function SplitLayout({
   const [rowHeights, setRowHeights] = useState<number[]>(() =>
     initialRows && initialRows.length === rows
       ? normalizePercent(initialRows, minRowHeightPercent)
-      : defaultRowHeights(rows),
+      : defaultRowHeights(rows)
   );
   const [colWidths, setColWidths] = useState<number[]>(() =>
     initialCols && initialCols.length === cols
       ? normalizePercent(initialCols, minColWidthPercent)
-      : defaultColWidths(cols),
+      : defaultColWidths(cols)
   );
   const containerRef = useRef<HTMLDivElement>(null);
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const [_containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [dragging, setDragging] = useState<
     { type: "row"; index: number } | { type: "col"; index: number } | null
   >(null);
@@ -135,7 +135,7 @@ export function SplitLayout({
       rowHeights: [...rowHeights],
       colWidths: [...colWidths],
     }),
-    [rowHeights, colWidths],
+    [rowHeights, colWidths]
   );
 
   const applySnapshot = useCallback(
@@ -143,12 +143,12 @@ export function SplitLayout({
       if (snapshot?.version !== 1) return;
       if (snapshot.rowHeights?.length === rows)
         setRowHeights(
-          normalizePercent(snapshot.rowHeights, minRowHeightPercent),
+          normalizePercent(snapshot.rowHeights, minRowHeightPercent)
         );
       if (snapshot.colWidths?.length === cols)
         setColWidths(normalizePercent(snapshot.colWidths, minColWidthPercent));
     },
-    [rows, cols, minRowHeightPercent, minColWidthPercent],
+    [rows, cols, minRowHeightPercent, minColWidthPercent]
   );
 
   useEffect(() => {
@@ -248,7 +248,7 @@ export function SplitLayout({
       dragStart.current = { x: e.clientX, y: e.clientY };
       (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
     },
-    [],
+    []
   );
 
   const handleColDividerDown = useCallback(
@@ -258,7 +258,7 @@ export function SplitLayout({
       dragStart.current = { x: e.clientX, y: e.clientY };
       (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
     },
-    [],
+    []
   );
 
   const handleOuterResizeDown = useCallback((e: React.PointerEvent) => {
