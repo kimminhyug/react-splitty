@@ -29,6 +29,9 @@ export function ModalController({
   toolbarClassName,
   minimizedBarClassName,
   modalClassName,
+  collisionDetection: defaultCollisionDetection,
+  closeButtonClassName,
+  closeButtonChildren,
   children,
 }: ModalControllerProps) {
   const modals = useModalStore((s) => s.modals);
@@ -106,7 +109,7 @@ export function ModalController({
       const { closeTopModal } = useModalStore.getState();
       closeTopModal();
     },
-    [topModal],
+    [topModal]
   );
 
   return (
@@ -126,6 +129,8 @@ export function ModalController({
       <MinimizedBar
         position={minimizedBarPosition}
         className={minimizedBarClassName}
+        closeButtonClassName={closeButtonClassName}
+        closeButtonChildren={closeButtonChildren}
       />
       {openModals.length > 0 && (
         <div
@@ -212,6 +217,9 @@ export function ModalController({
           item={item}
           scrollSyncGroups={scrollSyncGroups}
           className={modalClassName}
+          collisionDetection={defaultCollisionDetection}
+          closeButtonClassName={closeButtonClassName}
+          closeButtonChildren={closeButtonChildren}
         />
       ))}
     </div>

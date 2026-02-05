@@ -47,6 +47,10 @@ export interface ModalOptions {
   maxWidth?: number;
   /** 최대 높이 (px, 선택) */
   maxHeight?: number;
+  /** 닫기 버튼에 적용할 className (모달 헤더·최소화 바 공통) */
+  closeButtonClassName?: string;
+  /** 닫기 버튼 내부 커스텀 (미지정 시 기본 × 모양) */
+  closeButtonChildren?: ReactNode;
 }
 
 /** 컨트롤러(최상위) 옵션 */
@@ -64,6 +68,12 @@ export interface ModalControllerOptions {
   minimizedBarClassName?: string;
   /** 각 모달 루트에 적용할 className */
   modalClassName?: string;
+  /** 모달 드래그 시 충돌 감지 기본값 (모달별 options.collisionDetection으로 오버라이드 가능) */
+  collisionDetection?: boolean;
+  /** 닫기 버튼 기본 className (모달·최소화 바 공통, 모달 options로 오버라이드 가능) */
+  closeButtonClassName?: string;
+  /** 닫기 버튼 기본 children (모달·최소화 바 공통, 모달 options로 오버라이드 가능) */
+  closeButtonChildren?: ReactNode;
 }
 
 export type ModalId = string;
@@ -103,6 +113,8 @@ export interface SplitLayoutOptions {
   cellClassName?: string;
   /** 바깥 테두리 리사이즈 허용 (우측 하단 핸들) */
   resizable?: boolean;
+  /** 바깥 리사이즈 버튼(핸들)에 적용할 className */
+  resizeButtonClassName?: string;
   /** 바깥 박스 최소 너비 (px) */
   minOuterWidth?: number;
   /** 바깥 박스 최소 높이 (px) */

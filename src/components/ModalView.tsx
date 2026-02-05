@@ -12,19 +12,37 @@ export interface ModalViewProps {
   onBackdropClick?: () => void;
   /** 모달 루트에 적용할 className (ModalController의 modalClassName으로도 전달됨) */
   className?: string;
+  /** 충돌 감지 기본값 (모달 options.collisionDetection으로 오버라이드 가능) */
+  collisionDetection?: boolean;
+  /** 닫기 버튼 기본 className (모달 options로 오버라이드 가능) */
+  closeButtonClassName?: string;
+  /** 닫기 버튼 기본 children (모달 options로 오버라이드 가능) */
+  closeButtonChildren?: React.ReactNode;
 }
+
+const DEFAULT_CLOSE_LABEL = "×";
 
 export function ModalView({
   item,
   scrollSyncGroups,
   className,
+  collisionDetection: defaultCollisionDetection,
+  closeButtonClassName: defaultCloseButtonClassName,
+  closeButtonChildren: defaultCloseButtonChildren,
 }: ModalViewProps) {
-  const { modals, containerSize, updateBounds, setMinimized, bringToFront } =
-    useModalStore.getState();
+  const {
+    modals,
+    containerSize,
+    updateBounds,
+    setMinimized,
+    removeModal,
+    bringToFront,
+  } = useModalStore.getState();
   const opts: ModalOptions = {
     resizable: true,
     minimizable: true,
-    collisionDetection: false,
+    collisionDetection:
+      item.options?.collisionDetection ?? defaultCollisionDetection ?? false,
     allowRedistribute: false,
     closeOnBackdropClick: false,
     minWidth: DEFAULT_MIN.width,
@@ -64,7 +82,7 @@ export function ModalView({
       opts.minHeight,
       opts.maxWidth,
       opts.maxHeight,
-    ],
+    ]
   );
 
   const others = modals.filter((m) => m.id !== item.id && !m.minimized);
@@ -87,7 +105,7 @@ export function ModalView({
       };
       (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
     },
-    [item.id, item.bounds.x, item.bounds.y, bringToFront],
+    [item.id, item.bounds.x, item.bounds.y, bringToFront]
   );
 
   const handlePointerDownResize = useCallback(
@@ -105,7 +123,7 @@ export function ModalView({
       };
       (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
     },
-    [item.id, item.bounds, bringToFront],
+    [item.id, item.bounds, bringToFront]
   );
 
   useEffect(() => {
@@ -122,7 +140,7 @@ export function ModalView({
         const { dx: cdx, dy: cdy } = resolveCollisionsWithOthers(
           newBounds,
           others.map((m) => ({ id: m.id, bounds: m.bounds })),
-          item.id,
+          item.id
         );
         newBounds.x += cdx;
         newBounds.y += cdy;
@@ -254,6 +272,22 @@ export function ModalView({
               −
             </button>
           )}
+          <button
+            type="button"
+            className={[
+              "split-viewer-modal__btn",
+              "split-viewer-modal__btn-close",
+              item.options?.closeButtonClassName ?? defaultCloseButtonClassName,
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            aria-label="Close"
+            onClick={() => removeModal(item.id)}
+          >
+            {item.options?.closeButtonChildren ??
+              defaultCloseButtonChildren ??
+              DEFAULT_CLOSE_LABEL}
+          </button>
         </div>
       </div>
       <div

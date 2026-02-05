@@ -1,7 +1,7 @@
 {
   "name": "react-splitty",
-  "version": "1.0.2",
-  "description": "N개의 뷰어 모달을 관리하는 React 라이브러리 - 리사이즈, 충돌감지, 스크롤동기화, 최소화 지원",
+  "version": "1.0.3",
+  "description": "A React library for managing multiple viewer modals: resize, collision detection, scroll sync, and minimize.",
   "repository": {
     "type": "git",
     "url": "https://github.com/kimminhyug/react-splitty.git"

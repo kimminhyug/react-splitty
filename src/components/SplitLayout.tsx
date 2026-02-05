@@ -45,6 +45,8 @@ export interface SplitLayoutProps {
   layoutRef?: React.RefObject<SplitLayoutRef | null>;
   /** 바깥 테두리 리사이즈 허용 (우측 하단 핸들) */
   resizable?: boolean;
+  /** 바깥 리사이즈 버튼(핸들)에 적용할 className */
+  resizeButtonClassName?: string;
   /** 바깥 박스 최소 너비 (px) */
   minOuterWidth?: number;
   /** 바깥 박스 최소 높이 (px) */
@@ -72,6 +74,7 @@ export function SplitLayout({
   cellClassName,
   layoutRef,
   resizable = true,
+  resizeButtonClassName,
   minOuterWidth = 200,
   minOuterHeight = 160,
 }: SplitLayoutProps) {
@@ -450,7 +453,9 @@ export function SplitLayout({
         <div
           role="separator"
           aria-label="Resize layout"
-          className="split-layout__outer-resize"
+          className={["split-layout__outer-resize", resizeButtonClassName]
+            .filter(Boolean)
+            .join(" ")}
           onPointerDown={handleOuterResizeDown}
           style={{
             position: "absolute",

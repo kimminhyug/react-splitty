@@ -79,10 +79,10 @@ function App() {
     });
   };
 
-  const openSyncModal = (n: number) => {
+  const openSyncModal = () => {
     const g = `sync-${Date.now()}`;
     addModal({
-      id: `sync-a-${n}`,
+      id: `${g}-a`,
       title: `Scroll sync A`,
       content: (
         <div style={{ height: 200, overflow: "auto" }}>
@@ -94,7 +94,7 @@ function App() {
       options: { scrollSyncGroup: g, resizable: true, minimizable: true },
     });
     addModal({
-      id: `sync-b-${n}`,
+      id: `${g}-b`,
       title: `Scroll sync B`,
       content: (
         <div style={{ height: 200, overflow: "auto" }}>
@@ -176,7 +176,7 @@ function App() {
           >
             Add modal (close on backdrop click)
           </button>
-          <button type="button" onClick={() => openSyncModal(counter)}>
+          <button type="button" onClick={openSyncModal}>
             Scroll sync (2 modals)
           </button>
           <button type="button" onClick={openModalWithSplitLayout}>
