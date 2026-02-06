@@ -73,6 +73,7 @@ function App() {
       options: {
         resizable: true,
         minimizable: true,
+
         minWidth: 320,
         minHeight: 280,
       },
@@ -140,6 +141,18 @@ function App() {
             cols={2}
             toolbarClassName="split-layout__toolbar"
             cellClassName="split-layout__cell"
+            resizeButtonChildren={
+              <div style={{ width: 20, height: 20, backgroundColor: "red" }}>
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="currentColor"
+                >
+                  <path d="M12 12H8v-2h2V8h2v4z" />
+                </svg>
+              </div>
+            }
           >
             {["A", "B", "C", "D"].map((label, i) => (
               <div key={i} style={{ padding: 12 }}>
@@ -160,8 +173,22 @@ function App() {
 
   return (
     <ModalController minimizedBarPosition="bottom" width="100vw" height="100vh">
-      <div style={{ padding: 24, position: "relative", zIndex: 1, color: "#e0f4ff" }}>
-        <h1 style={{ color: "#e0f4ff", textShadow: "0 0 20px rgba(0, 180, 255, 0.5)" }}>Split Viewer demo</h1>
+      <div
+        style={{
+          padding: 24,
+          position: "relative",
+          zIndex: 1,
+          color: "#e0f4ff",
+        }}
+      >
+        <h1
+          style={{
+            color: "#e0f4ff",
+            textShadow: "0 0 20px rgba(0, 180, 255, 0.5)",
+          }}
+        >
+          Split Viewer demo
+        </h1>
         <p>
           Open modals and try drag, resize, minimize, ESC to close, 📋 copy
           layout, 📄 paste layout.

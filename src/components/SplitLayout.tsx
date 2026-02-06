@@ -47,6 +47,8 @@ export interface SplitLayoutProps {
   resizable?: boolean;
   /** 바깥 리사이즈 버튼(핸들)에 적용할 className */
   resizeButtonClassName?: string;
+  /** 바깥 리사이즈 버튼(핸들)에 적용할 children */
+  resizeButtonChildren?: React.ReactNode;
   /** 바깥 박스 최소 너비 (px) */
   minOuterWidth?: number;
   /** 바깥 박스 최소 높이 (px) */
@@ -75,6 +77,7 @@ export function SplitLayout({
   layoutRef,
   resizable = true,
   resizeButtonClassName,
+  resizeButtonChildren,
   minOuterWidth = 200,
   minOuterHeight = 160,
 }: SplitLayoutProps) {
@@ -470,15 +473,19 @@ export function SplitLayout({
           }}
           title="Resize"
         >
-          <svg
-            className="split-layout__outer-resize-icon"
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="currentColor"
-          >
-            <path d="M12 12H8v-2h2V8h2v4z" />
-          </svg>
+          {resizeButtonChildren ? (
+            resizeButtonChildren
+          ) : (
+            <svg
+              className="split-layout__outer-resize-icon"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="currentColor"
+            >
+              <path d="M12 12H8v-2h2V8h2v4z" />
+            </svg>
+          )}
         </div>
       )}
     </div>
