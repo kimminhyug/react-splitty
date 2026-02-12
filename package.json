@@ -1,6 +1,6 @@
 {
   "name": "react-splitty",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A React library for managing multiple viewer modals: resize, collision detection, scroll sync, and minimize.",
   "repository": {
     "type": "git",

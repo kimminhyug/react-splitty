@@ -1,3 +1,5 @@
+import "./styles/split-viewer.css";
+
 export { MinimizedBar } from "./components/MinimizedBar";
 export type {
   MinimizedBarPosition,
